@@ -1,0 +1,37 @@
+1
+SELECT * 
+FROM `students`
+WHERE `date_of_birth` LIKE '1990%'
+ORDER BY `date_of_birth`
+
+2
+SELECT * FROM `courses`
+WHERE `cfu` > '10'
+ORDER BY `cfu`
+
+3
+SELECT * FROM `students`
+WHERE `date_of_birth` < '1992'
+ORDER by `date_of_birth` DESC
+
+4
+SELECT * FROM `courses`
+WHERE `period` = 'I semestre' AND `year` = '1'
+
+5
+SELECT * FROM `exams`
+WHERE `date` = '2020-06-20' AND `hour` > '13:59'
+ORDER BY `hour`
+
+6
+SELECT * FROM `degrees`
+WHERE `level` = 'magistrale'
+
+7
+SELECT COUNT(*) AS `totale_dipartimenti:`
+FROM `departments`
+
+8
+SELECT COUNT(*) AS `insegnanti_senza_numero`
+FROM `teachers`
+WHERE `phone` IS NULL
