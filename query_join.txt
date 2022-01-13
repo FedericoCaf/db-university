@@ -1,0 +1,55 @@
+1
+SELECT `degrees`.`name` AS `corso_di_laurea`, `students`.`surname`, `students`.`name`
+FROM `degrees`
+JOIN `students` ON `degrees`.`id` = `students`.`degree_id`
+WHERE `degrees`.`name` = 'corso di laurea in economia'
+ORDER BY `students`.`surname`
+
+2
+SELECT `departments`.`name` AS `dipartimento`, `degrees`.`name` AS `corso_di_laurea`
+FROM `departments`
+JOIN `degrees` ON `departments`.`id` = `degrees`.`department_id`
+WHERE `departments`.`name` = 'Dipartimento di Neuroscienze'
+
+3
+SELECT `teachers`.`name`, `teachers`.`surname`, `courses`.`name` AS `corso`
+FROM `course_teacher`
+JOIN `teachers` ON `course_teacher`.`teacher_id` = `teachers`.`id`
+JOIN `courses` ON `course_teacher`.`course_id` = `courses`.`id`
+WHERE `teachers`.`id` = 44
+
+4
+SELECT `students`.`surname`, `students`.`name`, `degrees`.`name` AS `facolta`, `degrees`.`level`, `degrees`.`address`,`departments`.`name` AS `dipartimento`
+FROM `degrees`
+JOIN `departments` ON `degrees`.`department_id` = `departments`.`id`
+JOIN `students` ON `degrees`.`id` = `students`.`degree_id`
+ORDER BY `students`.`surname`
+
+5
+SELECT `degrees`.`name` AS `facolta`, `courses`.`name` AS `corso`, `teachers`.`surname`, `teachers`.`name`
+FROM `degrees`
+JOIN `courses` ON `degrees`.`id` = `courses`.`degree_id`
+JOIN `course_teacher` ON `courses`.`id` = `course_teacher`.`course_id`
+JOIN `teachers` ON `teachers`.`id` = `course_teacher`.`teacher_id`
+
+6
+SELECT `departments`.`name` AS `dipartimento`, `teachers`.`surname`, `teachers`.`name`
+FROM `departments`
+JOIN `degrees` ON `departments`.`id` = `degrees`.`department_id`
+JOIN `courses` ON `degrees`.`id` = `courses`.`degree_id`
+JOIN `course_teacher` ON `courses`.`id` = `course_teacher`.`course_id`
+JOIN `teachers` ON `teachers`.`id` = `course_teacher`.`teacher_id`
+WHERE `departments`.`name` = 'dipartimento di matematica'
+GROUP BY `teachers`.`surname`, `teachers`.`name`
+
+7
+SELECT `students`.`name`, `students`.`surname`, `courses`.`name` AS `esame`, COUNT(`exams`.`id`) AS `tentativi`
+FROM `students`
+JOIN `exam_student` ON `students`.`id` = `exam_student`.`student_id`
+JOIN `exams` ON `exam_student`.`exam_id` = `exams`.`id`
+JOIN `courses` ON `exams`.`course_id` = `courses`.`id`
+GROUP BY `students`.`id`, `courses`.`id`
+
+
+
+
